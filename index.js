@@ -5,6 +5,7 @@ const dotenv = require("dotenv")
 dotenv.config()
 
 // connect to mongo db
+// Add extra comment
 
 mongoose
   .connect(process.env.MONGO_URI, {
