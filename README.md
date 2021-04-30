@@ -20,10 +20,14 @@ To set up on your system you will need to have:
 ```
 
 In order to run the code on your system: 
-1. Run `git clone https://github.com/isaaclall/shopify-challenge-fall`  
+1. Run `git clone https://github.com/isaaclall/shopify-challenge-fall.git`  
 2. `cd` into the project repository  
 3. Run `npm install` to install all the required dependencies
 4. Run `npm start` to run the server - The server will start listening on `http://localhost:5000/`
+
+
+
+
 
 
 
