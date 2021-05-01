@@ -19,6 +19,9 @@ mongoose
 
 // Middleware
 app.use(express.json())
+
+// passport middleware
+
 // auth middleware
 
 app.use("/auth", authRoute)

@@ -7,7 +7,6 @@ const checkAuth = require("../middleware/check-auth")
 router.post("/", checkAuth, upload.single("image"), async (req, res) => {
   try {
     const result = await cloudinary.uploader.upload(req.file.path)
-    console.log(result)
     // use the decoded user token to get email
     const useremail = res.useremail
     const userId = res.userid
@@ -54,7 +53,6 @@ router.delete("/:id", checkAuth, async (req, res) => {
     let j = -1
     for (var i = 0; i < user.images.length; i++) {
       if (user.images[i].public_id == req.params.id) {
-        console.log("IN")
         j = i
       }
     }
@@ -63,7 +61,7 @@ router.delete("/:id", checkAuth, async (req, res) => {
     } else {
       user.images.splice(j, 1)
       await user.save()
-      res.send("Done")
+      res.send("Image Deleted")
     }
   } catch (error) {
     console.log(error)
