@@ -4,7 +4,7 @@ My submission for 2021 fall shopify backend developer challenge - Building an Im
 
 ## Contents
   - [Setting up](#setting-up)
-  - [Features and user walkthrough](#features )
+  - [Features and user walkthrough](#Features-and-User-Walkthrough)
   - [Tests](#testing)
   - [Scaling](#next-steps)
 
@@ -33,9 +33,10 @@ To host your own server and run the files you will need to go into the .env file
   CLOUDINARY_API_SECRET: "Your cloudinary api secret key",
   CLOUDINARY_CLOUD_NAME: "Your cloudinary cloud name",
   JWT_KEY = "secret"
-  
-  }
+
 ```
+
+# Features and User Walkthrough
 
 
 
