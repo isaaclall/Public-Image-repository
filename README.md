@@ -106,14 +106,8 @@ We will be using postman to send requests!
 
 
 # Scaling and Next Steps
-
-
-
-
-
-
-
-
-
-
-
+- Add validation to login and sign up information
+- Make the images parameters required
+- Allow uploading of multiple images at once
+- Send more descriptive messages as results
+- Containerize project using docker
