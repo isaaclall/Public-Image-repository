@@ -7,15 +7,19 @@ const checkAuth = require("../middleware/check-auth")
 router.post("/", checkAuth, upload.single("image"), async (req, res) => {
   try {
     const result = await cloudinary.uploader.upload(req.file.path)
-
-    let user = new User({
+    console.log(result)
+    // use the decoded user token to get email
+    const useremail = res.useremail
+    const userId = res.userid
+    // use email to find document in DB
+    const user = await User.findById(userId)
+    await user.images.push({
+      public_id: result.public_id,
       name: req.body.name,
-      avatar: result.secure_url,
-      cloudinary_id: result.public_id,
+      url: result.secure_url,
     })
     await user.save()
-    res.json(user)
-    res.json(result)
+    res.send("image uploaded")
   } catch (error) {
     console.log(error)
   }
@@ -23,15 +27,18 @@ router.post("/", checkAuth, upload.single("image"), async (req, res) => {
 
 router.get("/", checkAuth, async (req, res) => {
   try {
-    let users = await User.find()
-    let userToReturn = null
-    users.map((user) => {
-      if (user.name === req.params.name) {
-        userToReturn = user
+    const useremail = res.useremail
+    const userId = res.userid
+    const user = await User.findById(userId)
+    if (req.query.id == null) {
+      res.json(user.images)
+    } else {
+      for (var i = 0; i < user.images.length; i++) {
+        if (user.images[i].public_id == req.query.id) {
+          res.send(user.images[i])
+        }
       }
-    })
-
-    res.json(userToReturn)
+    }
   } catch (error) {
     console.log(error)
   }
@@ -39,31 +46,25 @@ router.get("/", checkAuth, async (req, res) => {
 
 router.delete("/:id", checkAuth, async (req, res) => {
   try {
-    let user = await User.findById(req.params.id)
+    const userId = res.userid
+    const user = await User.findById(userId)
     // delete image from cloundinary
-    await cloudinary.uploader.destroy(user.cloudinary_id)
-    // Delete user from db
-    await user.remove()
-    res.json(user)
-  } catch (error) {
-    console.log(error)
-  }
-})
-
-router.put("/:id", checkAuth, upload.single("image"), async (req, res) => {
-  try {
-    let user = await User.findById(req.params.id)
-    // Delete image from cloudinary
-    await cloudinary.uploader.destroy(user.cloudinary_id)
-    // Upload image to cloudinary
-    const result = await cloudinary.uploader.upload(req.file.path)
-    const data = {
-      name: req.body.name || user.name,
-      avatar: result.secure_url || user.avatar,
-      cloudinary_id: result.public_id || user.cloudinary_id,
+    await cloudinary.uploader.destroy(req.params.id)
+    // delete the image data from mongo db
+    let j = -1
+    for (var i = 0; i < user.images.length; i++) {
+      if (user.images[i].public_id == req.params.id) {
+        console.log("IN")
+        j = i
+      }
     }
-    user = await User.findByIdAndUpdate(req.params.id, data, { new: true })
-    res.json(user)
+    if (j == -1) {
+      res.send("Image not found")
+    } else {
+      user.images.splice(j, 1)
+      await user.save()
+      res.send("Done")
+    }
   } catch (error) {
     console.log(error)
   }

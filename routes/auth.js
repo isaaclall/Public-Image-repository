@@ -1,13 +1,12 @@
 const router = require("express").Router()
 const express = require("express")
 const mongoose = require("mongoose")
-const userauth = require("../model/userauth")
+const User = require("../model/user")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 
 router.post("/signup", (req, res, next) => {
-  userauth
-    .find({ email: req.body.email })
+  User.find({ email: req.body.email })
     .exec()
     .then((user) => {
       if (user.length >= 1) {
@@ -21,10 +20,11 @@ router.post("/signup", (req, res, next) => {
               error: err,
             })
           } else {
-            const newuser = new userauth({
+            const newuser = new User({
               _id: mongoose.Types.ObjectId(),
               email: req.body.email,
               password: hash,
+              images: [],
             })
             newuser
               .save()
@@ -53,7 +53,7 @@ router.delete("/:userId", async (req, res) => {
 })
 
 router.post("/login", async (req, res) => {
-  let user = await userauth.find({ email: req.body.email })
+  let user = await User.find({ email: req.body.email })
   if (user.length < 1) {
     return res.status(401).json({
       message: "User does not exist",
