@@ -110,4 +110,4 @@ We will be using postman to send requests!
 - Make the images parameters required
 - Allow uploading of multiple images at once
 - Send more descriptive messages as results
-- Containerize project using docker
+- Containerize project using Docker
