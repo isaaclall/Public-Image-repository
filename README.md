@@ -65,6 +65,14 @@ We will be using postman to send requests!
 
 3) To upload an image from your computer
 
+- Send a post request to `http://localhost:5000/user`
+- Upload your image and name it in the request body
+![image](https://user-images.githubusercontent.com/66037084/116791647-c9ee2100-aa89-11eb-9891-bc5507a372f7.png)
+- Include your jwt token in the request header with a key named 'Authorization' and the keyword 'Bearer' before the token
+![image](https://user-images.githubusercontent.com/66037084/116791659-edb16700-aa89-11eb-939e-fa6399518da3.png)
+- If your request is successful you will get the following message
+![image](https://user-images.githubusercontent.com/66037084/116791743-631d3780-aa8a-11eb-8944-288a61359338.png)
+
 4) To get a specific image for the logged in user
 
 5) To get all images for the logged in user
