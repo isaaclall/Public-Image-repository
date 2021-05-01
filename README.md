@@ -52,11 +52,16 @@ We will be using postman to send requests!
 
 - Send a POST request `http://localhost:5000/auth/signup`
 - Dont forget to include your email and password in the body of the request ! (JSON format)
-
 ![image](https://user-images.githubusercontent.com/66037084/116791202-b097a580-aa86-11eb-8f84-7ef174b71175.png)
 
-
 2) To login using your valid email and password
+
+- Send a POST request to `http://localhost:5000/auth/login`
+- Dont forget to include your email and password in the body of the request ! (JSON format)
+![image](https://user-images.githubusercontent.com/66037084/116791407-1a647f00-aa88-11eb-8edc-8374acbcd303.png)
+- Then you will receive a JWT token as a response 
+![image](https://user-images.githubusercontent.com/66037084/116791432-539cef00-aa88-11eb-98e0-d90d00c8cda7.png)
+- Save this token as you will need it to access all the main features of the application!
 
 3) To upload an image from your computer
 
