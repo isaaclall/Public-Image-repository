@@ -7,12 +7,16 @@ const checkAuth = require("../middleware/check-auth")
 router.post("/", checkAuth, upload.single("image"), async (req, res) => {
   try {
     // add a couple of error checking here like make the name
-    const result = await cloudinary.uploader.upload(req.file.path)
     // use the decoded user token to get email
     const useremail = res.useremail
     const userId = res.userid
     // use email to find document in DB
     const user = await User.findById(userId)
+    if (req.body.name == "") {
+      res.send("No name provided - Please provide name!")
+      return
+    }
+    const result = await cloudinary.uploader.upload(req.file.path)
     await user.images.push({
       public_id: result.public_id,
       name: req.body.name,
@@ -68,7 +72,5 @@ router.delete("/:id", checkAuth, async (req, res) => {
     console.log(error)
   }
 })
-
-// maybe add a delete all function!
 
 module.exports = router
