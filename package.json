@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index"
+    "start": "nodemon index",
+    "test": "mocha --reporter spec --exit"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "chai": "^4.3.4",
     "cloudinary": "^1.25.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -20,6 +22,9 @@
     "passport": "^0.4.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "chai-http": "^4.3.0",
+    "mocha": "^8.3.2",
+    "nodemon": "^2.0.7",
+    "supertest": "^6.1.3"
   }
 }

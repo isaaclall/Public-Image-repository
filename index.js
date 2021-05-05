@@ -30,3 +30,5 @@ app.use("/auth", authRoute)
 app.use("/user", require("./routes/user"))
 
 app.listen(5000, () => console.log("server is upppp"))
+
+module.exports = app
