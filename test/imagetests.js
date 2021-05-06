@@ -22,7 +22,27 @@ describe("Test Image Endpoints", async () => {
         .set({ Authorization: `Bearer ${token}` })
       expect(resp.status).to.equal(201)
       expect(resp.body.message).to.be.equal("image uploaded")
-      imageID = resp.public_id
+      imageID = resp.body.public_id
+    })
+  })
+
+  describe("Image List Endpoint", () => {
+    it("Test Image List", async () => {
+      const resp = await request(server)
+        .get(`/user/?id=${imageID}`)
+        .set({ Authorization: `Bearer ${token}` })
+      //   expect(resp.status).to.equal(200);
+      expect(resp.body.public_id).to.equal(imageID)
+    })
+  })
+
+  describe("Image Delete Endpoints", () => {
+    it("Test Image Delete", async () => {
+      const resp = await request(server)
+        .delete(`/user/${imageID}`)
+        .set({ Authorization: `Bearer ${token}` })
+      expect(resp.status).to.equal(200)
+      expect(resp.body.message).to.equal("Image Deleted")
     })
   })
 })

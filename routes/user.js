@@ -25,6 +25,7 @@ router.post("/", checkAuth, upload.single("image"), async (req, res) => {
     await user.save()
     return res.status(201).json({
       message: "image uploaded",
+      public_id: result.public_id,
     })
   } catch (error) {
     console.log(error)
@@ -36,13 +37,20 @@ router.get("/", checkAuth, async (req, res) => {
     const useremail = res.useremail
     const userId = res.userid
     const user = await User.findById(userId)
+    let image_to_return = null
     if (req.query.id == null) {
       res.json(user.images)
     } else {
       for (var i = 0; i < user.images.length; i++) {
         if (user.images[i].public_id == req.query.id) {
-          res.send(user.images[i])
+          //res.send(user.images[i])
+          image_to_return = user.images[i]
         }
+      }
+      if (image_to_return == null) {
+        res.send("No image matches the ID provided")
+      } else {
+        res.send(image_to_return)
       }
     }
   } catch (error) {
@@ -64,11 +72,15 @@ router.delete("/:id", checkAuth, async (req, res) => {
       }
     }
     if (j == -1) {
-      res.send("Image not found")
+      return res.status(401).json({
+        message: "Image not found",
+      })
     } else {
       user.images.splice(j, 1)
       await user.save()
-      res.send("Image Deleted")
+      return res.status(200).json({
+        message: "Image Deleted",
+      })
     }
   } catch (error) {
     console.log(error)
