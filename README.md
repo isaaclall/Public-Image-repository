@@ -104,7 +104,7 @@ Run the tests using `npm run test`
 
 # Scaling and Next Steps
 - Add validation to login and sign up information
-- Make the images parameters required
+- Add more tests for 100% code coverage
 - Allow uploading of multiple images at once
 - Send more descriptive messages as results
 - Containerize project using Docker
