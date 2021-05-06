@@ -1,5 +1,5 @@
 # Shopify-challenge-2021-fall
-My submission for 2021 fall shopify backend developer challenge - Building an Image Respository!
+My submission for the 2021 fall Shopify backend developer challenge - Building an Image Repository!
 
 
 ## Contents
@@ -41,7 +41,7 @@ To host your own server and compile the code you will need to go into the .env f
 This app contains the following features -  
 - User Sign up using email and password (hashed then stored in the DB)
 - Login and secure routes with JWT auth
-- Uploading images and a name assoiciated with the image
+- Uploading images and a name associated with the image
 - Deleted any image that the user owns, by providing image ID
 - Listing all the images and their names that the logged in user has stored
 
