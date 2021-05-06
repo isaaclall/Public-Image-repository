@@ -30,6 +30,10 @@ const existingUserwrongpass = {
   password: "isaac",
   email: "isaaclall@gmail.com",
 }
+const existingnonuser = {
+  password: "isaacgg",
+  email: "isaac@gmail.com",
+}
 
 describe("Auth API", () => {
   // test the post route for for user sign up
@@ -60,7 +64,7 @@ describe("Auth API", () => {
   })
 
   it("Login random non user", async () => {
-    const resp = await request(server).post("/auth/login").send(testUser)
+    const resp = await request(server).post("/auth/login").send(existingnonuser)
     expect(resp.status).to.equal(401)
     expect(resp.body.message).to.be.equal("User does not exist")
   })

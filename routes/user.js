@@ -23,7 +23,9 @@ router.post("/", checkAuth, upload.single("image"), async (req, res) => {
       url: result.secure_url,
     })
     await user.save()
-    res.send("image uploaded")
+    return res.status(201).json({
+      message: "image uploaded",
+    })
   } catch (error) {
     console.log(error)
   }
