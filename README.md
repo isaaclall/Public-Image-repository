@@ -52,7 +52,7 @@ We will be using postman to send requests!
 
 - Send a POST request `http://localhost:5000/auth/signup`
 - Dont forget to include your email and password in the body of the request ! (JSON format)
-<img src="https://user-images.githubusercontent.com/66037084/116791202-b097a580-aa86-11eb-8f84-7ef174b71175.png" width="1000" height="400">
+<img src="https://user-images.githubusercontent.com/66037084/116791202-b097a580-aa86-11eb-8f84-7ef174b71175.png" width="600" height="200">
 
 
 **2) To login using your valid email and password**
