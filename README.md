@@ -94,6 +94,8 @@ We will be using postman to send requests!
 
 
 # Testing
+![image](https://user-images.githubusercontent.com/66037084/117366927-76b40e00-ae8f-11eb-91a8-eba7e184b13e.png)
+
 
 
 
